@@ -9,7 +9,7 @@ function CreatePost({
 }) {
   return (
     <div className="flex flex-col items-center ">
-      <div className="flex flex-col items-start border-2 border-gray-600 rounded p-2 m-2 w-80 bg-gray-800">
+      <div className="flex flex-col items-start border-2 border-gray-600 rounded p-2 m-2 w-80 bg-gray-800 lg:w-3/4 lg:items-center">
         <div className="px-4">
           <div>
             <div className="text-white">Title</div>
@@ -17,7 +17,7 @@ function CreatePost({
               type="text"
               value={postTitle}
               onChange={handleFirstNameChange}
-              size="20"
+              size="32"
             />
           </div>
           <div>
