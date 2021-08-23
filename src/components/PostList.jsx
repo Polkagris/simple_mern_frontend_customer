@@ -8,9 +8,9 @@ function PostList({
 }) {
   return (
     <div>
-      {fetchedData.data ? (
+      {fetchedData ? (
         <div className="flex flex-col items-center ">
-          {fetchedData.data.map((post, index) => {
+          {fetchedData.map((post, index) => {
             return (
               <div
                 key={index}

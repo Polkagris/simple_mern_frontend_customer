@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     const getData = async () => {
       const data = await axios.get("http://localhost:3001/postlist");
-      setFetchedData(data);
+      setFetchedData(data.data.reverse());
     };
     getData();
   }, [listUpdated]);
@@ -42,7 +42,7 @@ function App() {
 
   const handleUpvotePost = async (postIndex) => {
     setListUpdated(true);
-    const correctPostId = fetchedData.data[postIndex]._id;
+    const correctPostId = fetchedData[postIndex]._id;
     await axios.post(`http://localhost:3001/upvote/${correctPostId}`);
     console.log("correctPost: ", correctPostId);
     setListUpdated(false);
@@ -50,7 +50,7 @@ function App() {
 
   const handleDownvotePost = async (postIndex) => {
     setListUpdated(true);
-    const correctPostId = fetchedData.data[postIndex]._id;
+    const correctPostId = fetchedData[postIndex]._id;
     await axios.post(`http://localhost:3001/downvote/${correctPostId}`);
     console.log("correctPost: ", correctPostId);
     setListUpdated(false);
@@ -59,7 +59,7 @@ function App() {
   const handleClickDeletePost = async (postIndex) => {
     if (window.confirm("Are you sure you want to delete this post?")) {
       setListUpdated(true);
-      const correctPostId = fetchedData.data[postIndex]._id;
+      const correctPostId = fetchedData[postIndex]._id;
       await axios.delete(`http://localhost:3001/post/delete/${correctPostId}`);
       console.log("correctPost: ", correctPostId);
       setListUpdated(false);
