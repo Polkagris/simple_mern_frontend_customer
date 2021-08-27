@@ -12,7 +12,9 @@ function App() {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await axios.get("http://localhost:3001/postlist");
+      const data = await axios.get(
+        "https://posts-node-express-api.herokuapp.com/postlist"
+      );
       setFetchedData(data.data.reverse());
     };
     getData();
@@ -34,7 +36,10 @@ function App() {
       title: postTitle,
       description: postDescription,
     };
-    await axios.post("http://localhost:3001/post", newPost);
+    await axios.post(
+      "https://posts-node-express-api.herokuapp.com/post",
+      newPost
+    );
     setPostTitle("");
     setPostDescription("");
     setListUpdated(false);
@@ -43,7 +48,9 @@ function App() {
   const handleUpvotePost = async (postIndex) => {
     setListUpdated(true);
     const correctPostId = fetchedData[postIndex]._id;
-    await axios.post(`http://localhost:3001/upvote/${correctPostId}`);
+    await axios.post(
+      `https://posts-node-express-api.herokuapp.com/upvote/${correctPostId}`
+    );
     console.log("correctPost: ", correctPostId);
     setListUpdated(false);
   };
@@ -51,7 +58,9 @@ function App() {
   const handleDownvotePost = async (postIndex) => {
     setListUpdated(true);
     const correctPostId = fetchedData[postIndex]._id;
-    await axios.post(`http://localhost:3001/downvote/${correctPostId}`);
+    await axios.post(
+      `https://posts-node-express-api.herokuapp.com/${correctPostId}`
+    );
     console.log("correctPost: ", correctPostId);
     setListUpdated(false);
   };
@@ -60,7 +69,9 @@ function App() {
     if (window.confirm("Are you sure you want to delete this post?")) {
       setListUpdated(true);
       const correctPostId = fetchedData[postIndex]._id;
-      await axios.delete(`http://localhost:3001/post/delete/${correctPostId}`);
+      await axios.delete(
+        `https://posts-node-express-api.herokuapp.com/post/delete/${correctPostId}`
+      );
       console.log("correctPost: ", correctPostId);
       setListUpdated(false);
     } else {
